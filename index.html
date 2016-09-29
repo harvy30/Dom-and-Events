@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>10 Form and View div</title>
+</head>
+
+<body>
+    <div id="viewDiv">
+        <div id="formDiv">
+            <label for="myFirstName">First Name
+                <input type="text" id="myFirstName" />
+            </label>
+            <br />
+            <label for="myLastName">Last Name
+                <input type="text" id="myLastName" />
+            </label>
+            <br />
+            <label>Gender:</label>
+            <label for="sexMale">Male
+                <input type="radio" name="subject" id="sexMale">
+            </label>
+            <label for="sexFemale">Female
+                <input type="radio" name="subject" id="sexFemale">
+            </label>
+            <br />
+            <label>State:
+                <select id="mixState">
+                    <option value="NaN">Select a State</option>
+                    <option value="PB">Punjab</option>
+                    <option value="CH">Chandigarh</option>
+                    <option value="HR">Harayana</option>
+                    <option value="DL">New Delhi</option>
+                    <option value="CA">California</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Gujrat</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="IN">Indiana</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                </select>
+            </label>
+            <button id="saveButton">Save</button>
+            <button id="editButton">Edit</button>
+        </div>
+        <div id="viewDiv">
+            <label>Full Name:</label>
+            <span id="secondFirstName" class="name"></span>
+            <span id="secondLastName" class="name"></span>
+            <br />
+            <br />
+            <label id="gender">Gender:</label>
+            <span id="myGender"></span>
+            <br />
+            <br />
+            <label id="allState">State:</label>
+            <span id="myState"></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+    (function() {
+        'use strict';
+
+        var formDiv = getElementById('formDiv');
+        var viewDiv = getElementById('viewDiv');
+        var saveButton = getElementById('saveButton');
+        var editButton = getElementById('editButton');
+        var myFirstName = getElementById('myFirstName');
+        var myLastName = getElementById(id)('myLastName');
+        var secondFirstName = getElementById(id)('secondFirstName');
+        var myGender = getElementById(id)('myGender');
+        var sexMale = getElementById(id)('sexMale');
+        var sexFemale = getElementById(id)('sexFemale');
+        var myState = getElementById(id)('myState');
+        var usaState = getElementById(id)('mixState');
+        var gender = getElementById(id)('gender');
+        var allState = getElementById(id)('allState');
+
+
+        editButton.disabled = true;
+        viewDiv.style.visibility = 'hidden';
+
+
+        saveButton.addEventListener('click', function() {
+            viewDiv.style.visibility = 'visible';
+            editButton.disabled = false;
+
+            secondFirstName.innerHTML = myFirstName.value;
+            secondLastName.innerHTML = myLastName.value;
+            myFirstName.value = myLastName.value = " ";
+
+            if (sexMale.checked == true) {
+                myGender.innerHTML = "Male";
+            } else if (sexFemale.checked == true) {
+                myGender.innerHTML = "Female";
+            } else {
+                myGender.innerHTML = "Please Enter Your Gender";
+            }
+            sexMale.checked = false;
+            sexFemale.checked = false;
+
+            myState.innerHTML = mixState.value;
+            usaState.value = 'NaN';
+
+            gender.style.visibility = allState.style.visibility = 'visible';
+
+        }, false);
+
+        editButton.addEventListener('click', function() {
+            myFirstName.value = secondFirstName.innerHTML;
+            myLastName.value = secondLastName.innerHTML;
+            secondFirstName.innerHTML = secondLastName.innerHTML = " ";
+
+            if (myGender.innerHTML == "Male") {
+                sexMale.checked = true;
+                myGender.innerHTML = " ";
+            } else if (myGender.innerHTML == "Female") {
+                sexFemale.checked = true;
+                myGender.innerHTML = " ";
+            } else {
+                sexMale.checked = sexFemale.checked = false;
+                myGender.innerHTML = " ";
+            }
+            gender.style.visibility = allState.style.visibility = 'hidden';
+
+            usaState.value = myState.innerHTML;
+            myState.innerHTML = " ";
+
+            editButton.disabled = false;
+            viewDiv.style.visibility = 'hidden';
+
+
+        }, false)
+
+    })();
+    </script>
+</body>
+
+</html>
